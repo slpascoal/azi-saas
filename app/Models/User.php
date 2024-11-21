@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -21,6 +22,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'email_verified_at',
+        'phone',
+        'last_whatsapp_at',
+        'memory',
+        'remember_token',
     ];
 
     /**
@@ -43,6 +49,13 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'last_whatsapp_at' => 'datetime',
+            'memory' => 'json',
         ];
+    }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
     }
 }
