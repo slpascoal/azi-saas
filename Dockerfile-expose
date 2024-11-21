@@ -1,0 +1,16 @@
+FROM php:8.3-cli
+
+WORKDIR /app
+
+# Instalar dependências necessárias
+RUN apt-get update && apt-get install -y \
+    unzip \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Baixar o Expose
+RUN wget https://github.com/beyondcode/expose/raw/master/builds/expose -O /usr/local/bin/expose \
+    && chmod +x /usr/local/bin/expose
+
+# Definir o comando padrão
+ENTRYPOINT ["expose"]

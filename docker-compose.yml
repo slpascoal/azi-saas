@@ -100,6 +100,16 @@ services:
             - '/dev/shm:/dev/shm'
         networks:
             - sail
+    expose:
+        build:
+            context: .
+            dockerfile: Dockerfile-expose
+        command: share http://laravel.test
+        depends_on:
+            - laravel.test
+        networks:
+            - sail
+
 networks:
     sail:
         driver: bridge
