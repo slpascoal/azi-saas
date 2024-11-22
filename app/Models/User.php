@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
+    public function routeNotificationForWhatsApp()
+    {
+        return $this->phone;
+    }
 }
