@@ -10,7 +10,7 @@ class WhatsAppChannel
     /**
      * Send the given notification.
      */
-    public function send($notifiable, Notification $notification): void
+    public function send($notifiable, Notification $notification)
     {
         $message = $notification->toWhatsApp($notifiable);
 
@@ -20,12 +20,23 @@ class WhatsAppChannel
 
         $twilio = new Client(config('twilio.account_sid'), config('twilio.auth_token'));
 
-        $twilio->messages->create(
+        if ($message->contentSid) {
+            return $twilio->messages->create(
+                'whatsapp:' . $to,
+                [
+                    'from'=>"whatsapp:". $from,
+                    'contentSid'=> $message->contentSid,
+                    'contentVariables' => $message->variables
+                ]
+            );
+        }
+
+        return $twilio->messages->create(
             'whatsapp:' . $to,
             [
-                'from'=>$from,
-                'body'=> $message
+                'from'=>"whatsapp:". $from,
+                'body'=> $message->content
             ]
-            );
+        );
     }
 }

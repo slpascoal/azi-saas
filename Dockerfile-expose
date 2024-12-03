@@ -12,5 +12,9 @@ RUN apt-get update && apt-get install -y \
 RUN wget https://github.com/beyondcode/expose/raw/master/builds/expose -O /usr/local/bin/expose \
     && chmod +x /usr/local/bin/expose
 
+# Configurar o token e o servidor
+ENV EXPOSE_AUTH_TOKEN=fdaa8eb6-2a2e-43d2-965a-0e875cd768b2
+RUN expose token $EXPOSE_AUTH_TOKEN
+
 # Configurar o comando padrão
 ENTRYPOINT ["expose"]

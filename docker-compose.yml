@@ -104,7 +104,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile-expose
-        command: share http://laravel.test
+        command: share 172.31.32.1
         depends_on:
             - laravel.test
         networks:

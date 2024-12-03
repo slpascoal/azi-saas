@@ -7,12 +7,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "laravel/cashier": "^15.5",
         "laravel/framework": "^11.31",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "twilio/sdk": "^8.3"
     },
     "require-dev": {
+        "beyondcode/expose": "^2.6",
         "fakerphp/faker": "^1.23",
         "laradumps/laradumps": "^3.0",
         "laravel/pail": "^1.1",
